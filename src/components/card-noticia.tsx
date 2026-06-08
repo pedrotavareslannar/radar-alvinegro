@@ -24,7 +24,7 @@ export default function CardNoticia({ noticia, destaque = false, compacto = fals
             <img
               src={noticia.imagem_capa}
               alt={noticia.titulo}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
             />
           </div>
         )}
@@ -46,7 +46,7 @@ export default function CardNoticia({ noticia, destaque = false, compacto = fals
             <img
               src={noticia.imagem_capa}
               alt={noticia.titulo}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
             />
           </div>
         )}
