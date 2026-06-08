@@ -16,7 +16,8 @@ async function buscarNoticias(): Promise<Noticia[]> {
 
 export default async function Home() {
   const noticias = await buscarNoticias()
-  const [destaque, ...demais] = noticias
+  const destaques = noticias.slice(0, 4)
+  const demais = noticias.slice(4)
 
   return (
     <main className="flex flex-col min-h-screen bg-[#0D0D0D] text-white">
@@ -28,20 +29,23 @@ export default async function Home() {
             <p className="text-lg">Nenhuma notícia publicada ainda.</p>
           </div>
         ) : (
-          <>
-            {destaque && (
-              <div className="mb-8">
-                <CardNoticia noticia={destaque} destaque />
-              </div>
-            )}
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* 4 destaques à esquerda */}
+            <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {destaques.map((noticia, i) => (
+                <CardNoticia key={noticia.id} noticia={noticia} destaque={i === 0} />
+              ))}
+            </div>
+
+            {/* Demais notícias à direita */}
             {demais.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <aside className="lg:w-72 flex flex-col gap-4">
                 {demais.map((noticia) => (
-                  <CardNoticia key={noticia.id} noticia={noticia} />
+                  <CardNoticia key={noticia.id} noticia={noticia} compacto />
                 ))}
-              </div>
+              </aside>
             )}
-          </>
+          </div>
         )}
       </section>
 

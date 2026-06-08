@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const categorias = ['Transferências', 'Jogos', 'Clube', 'Bastidores', 'Opinião']
+const categorias = ['Transferências', 'Jogos', 'Classificação']
 
 export default function Header() {
   return (
