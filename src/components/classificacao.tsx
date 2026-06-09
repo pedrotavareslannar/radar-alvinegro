@@ -1,3 +1,5 @@
+'use client'
+
 const TABELA = [
   { pos: 7, team: 'CFC', p: 26, j: 18, sg: 4 },
   { pos: 8, team: 'SAO', p: 25, j: 18, sg: 2 },

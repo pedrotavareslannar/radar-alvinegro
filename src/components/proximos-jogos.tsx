@@ -1,3 +1,5 @@
+'use client'
+
 const JOGOS = [
   { home: 'CAM', away: 'BAH', competition: 'Brasileirão', date: '22/07 · Qua', venue: 'Arena MRV' },
   { home: 'PAL', away: 'CAM', competition: 'Brasileirão', date: '26/07 · Dom', venue: 'Allianz Parque' },

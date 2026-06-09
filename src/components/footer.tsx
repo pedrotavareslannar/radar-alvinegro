@@ -1,3 +1,5 @@
+'use client'
+
 import { Apple } from 'lucide-react'
 
 const COLUNAS = [
