@@ -1,9 +1,13 @@
 export const dynamic = 'force-dynamic'
 
+import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import type { Noticia } from '@/lib/types'
 import Header from '@/components/header'
-import Link from 'next/link'
+import HeroCarousel from '@/components/hero-carousel'
+import ProximosJogos from '@/components/proximos-jogos'
+import Classificacao from '@/components/classificacao'
+import Footer from '@/components/footer'
 
 async function buscarNoticias(): Promise<Noticia[]> {
   const { data } = await supabase
@@ -16,147 +20,122 @@ async function buscarNoticias(): Promise<Noticia[]> {
 }
 
 function formatarData(iso: string) {
-  return new Date(iso).toLocaleDateString('pt-BR', {
-    day: '2-digit',
-    month: 'long',
-    year: 'numeric',
-  })
+  return new Date(iso).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })
 }
 
-// Card destaque principal (ocupa metade da largura)
-function CardDestaque({ noticia }: { noticia: Noticia }) {
+function CardNoticia({ noticia }: { noticia: Noticia }) {
   return (
-    <Link href={`/noticias/${noticia.slug}`} className="group block h-full">
-      <article className="relative h-full min-h-[380px] rounded-lg overflow-hidden bg-white/5 border border-white/10 hover:border-[#F5C800]/50 transition-colors flex flex-col">
-        {noticia.imagem_capa && (
-          <div className="h-56 overflow-hidden">
-            <img src={noticia.imagem_capa} alt={noticia.titulo} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-          </div>
-        )}
-        <div className="p-5 flex flex-col gap-2 flex-1">
-          {noticia.categoria && (
-            <span className="text-[#F5C800] text-xs font-bold uppercase tracking-widest">{noticia.categoria}</span>
-          )}
-          <h2 className="text-xl font-bold leading-snug text-white group-hover:text-[#F5C800] transition-colors">
-            {noticia.titulo}
-          </h2>
-          {noticia.resumo && (
-            <p className="text-white/55 text-sm line-clamp-2 mt-1">{noticia.resumo}</p>
-          )}
-          <span className="text-white/35 text-xs mt-auto">{formatarData(noticia.criado_em)}</span>
+    <Link href={`/noticias/${noticia.slug}`} className="group block ra-card" style={{ borderRadius: 'var(--radius-md)', border: '1px solid var(--border)', overflow: 'hidden' }}>
+      {noticia.imagem_capa ? (
+        <div className="overflow-hidden" style={{ aspectRatio: '4/3' }}>
+          <img src={noticia.imagem_capa} alt={noticia.titulo} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300" />
         </div>
-      </article>
+      ) : (
+        <div className="flex items-center justify-center" style={{ aspectRatio: '4/3', background: 'linear-gradient(135deg,#161616 0%,#0D0D0D 100%)' }}>
+          <span className="w-2.5 rounded-sm opacity-40" style={{ height: 80, background: 'var(--ouro)' }} />
+        </div>
+      )}
+      <div className="p-5 flex flex-col gap-2">
+        {noticia.categoria && (
+          <span className="text-xs font-bold uppercase" style={{ letterSpacing: '0.12em', color: 'var(--ouro)' }}>{noticia.categoria}</span>
+        )}
+        <h3 className="font-bold text-base leading-snug ra-card-title" style={{ color: 'var(--text-strong)' }}>{noticia.titulo}</h3>
+        {noticia.resumo && <p className="text-sm line-clamp-2" style={{ color: 'var(--text-secondary)' }}>{noticia.resumo}</p>}
+        <span className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>{noticia.autor && <>{noticia.autor} · </>}{formatarData(noticia.criado_em)}</span>
+      </div>
+      <style>{`.ra-card:hover{border-color:rgba(245,200,0,0.5)!important}.ra-card:hover .ra-card-title{color:var(--ouro)!important}`}</style>
     </Link>
   )
 }
 
-// Card médio (grade 3 colunas)
-function CardMedio({ noticia }: { noticia: Noticia }) {
+function SectionHeading({ title, action, href }: { title: string; action?: string; href?: string }) {
   return (
-    <Link href={`/noticias/${noticia.slug}`} className="group block">
-      <article className="rounded-lg overflow-hidden border border-white/10 hover:border-[#F5C800]/50 transition-colors flex flex-col h-full bg-white/5">
-        {noticia.imagem_capa && (
-          <div className="h-36 overflow-hidden">
-            <img src={noticia.imagem_capa} alt={noticia.titulo} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-          </div>
-        )}
-        <div className="p-4 flex flex-col gap-2 flex-1">
-          {noticia.categoria && (
-            <span className="text-[#F5C800] text-xs font-bold uppercase tracking-widest">{noticia.categoria}</span>
-          )}
-          <h3 className="text-base font-bold leading-snug text-white group-hover:text-[#F5C800] transition-colors">
-            {noticia.titulo}
-          </h3>
-          <span className="text-white/35 text-xs mt-auto">{formatarData(noticia.criado_em)}</span>
-        </div>
-      </article>
-    </Link>
-  )
-}
-
-// Item lista lateral
-function ItemLista({ noticia }: { noticia: Noticia }) {
-  return (
-    <Link href={`/noticias/${noticia.slug}`} className="group block">
-      <article className="flex gap-3 py-3 border-b border-white/10 last:border-0">
-        {noticia.imagem_capa && (
-          <img src={noticia.imagem_capa} alt={noticia.titulo} className="w-20 h-14 object-cover rounded flex-shrink-0" />
-        )}
-        <div className="flex flex-col gap-1">
-          {noticia.categoria && (
-            <span className="text-[#F5C800] text-xs font-bold uppercase tracking-widest">{noticia.categoria}</span>
-          )}
-          <h4 className="text-sm font-semibold leading-snug text-white group-hover:text-[#F5C800] transition-colors line-clamp-2">
-            {noticia.titulo}
-          </h4>
-          <span className="text-white/35 text-xs">{formatarData(noticia.criado_em)}</span>
-        </div>
-      </article>
-    </Link>
+    <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center gap-3">
+        <span className="w-1 h-5 rounded-sm" style={{ background: 'var(--ouro)' }} />
+        <h2 className="text-lg font-black uppercase" style={{ color: 'var(--text-strong)' }}>{title}</h2>
+      </div>
+      {action && href && (
+        <Link href={href} className="text-xs font-bold uppercase hover:text-yellow-400 transition-colors" style={{ letterSpacing: '0.1em', color: 'var(--text-muted)' }}>
+          + {action}
+        </Link>
+      )}
+    </div>
   )
 }
 
 export default async function Home() {
   const noticias = await buscarNoticias()
-
-  const [n1, n2, n3, n4, n5, ...resto] = noticias
+  const heroSlides = noticias.slice(0, 3)
+  const gridNoticias = noticias.slice(0, 3)
+  const maisNoticias = noticias.slice(3)
 
   return (
-    <main className="flex flex-col min-h-screen bg-[#0D0D0D] text-white">
+    <main className="flex flex-col min-h-screen" style={{ background: 'var(--surface-base)' }}>
       <Header />
 
-      <div className="max-w-6xl mx-auto px-4 py-8 w-full flex-1">
+      <div className="max-w-6xl mx-auto px-4 py-8 w-full flex-1 flex flex-col gap-14">
 
-        {noticias.length === 0 ? (
-          <div className="text-center py-32 text-white/40">
-            <p className="text-lg">Nenhuma notícia publicada ainda.</p>
+        {/* 1. HERO + PRÓXIMOS JOGOS */}
+        <section className="grid gap-6" style={{ gridTemplateColumns: 'minmax(0,1fr) 300px', alignItems: 'stretch' }}>
+          <HeroCarousel slides={heroSlides} />
+          <ProximosJogos />
+        </section>
+
+        {/* 2. NOTÍCIAS + CLASSIFICAÇÃO */}
+        <section>
+          <SectionHeading title="Notícias" action="Ver todas" href="/noticias" />
+          <div className="grid gap-6" style={{ gridTemplateColumns: 'minmax(0,1fr) 300px', alignItems: 'start' }}>
+            <div className="grid grid-cols-3 gap-5">
+              {gridNoticias.length > 0
+                ? gridNoticias.map(n => <CardNoticia key={n.id} noticia={n} />)
+                : <p className="col-span-3 text-center py-16" style={{ color: 'var(--text-muted)' }}>Nenhuma notícia publicada ainda.</p>
+              }
+            </div>
+            <Classificacao />
           </div>
-        ) : (
-          <>
-            {/* Bloco principal: 2 destaques + lista lateral */}
-            <section className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
-              {/* Destaques */}
-              <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {n1 && <CardDestaque noticia={n1} />}
-                {n2 && <CardDestaque noticia={n2} />}
-              </div>
+        </section>
 
-              {/* Lista lateral */}
-              <aside className="flex flex-col">
-                <h2 className="text-xs font-bold uppercase tracking-widest text-[#F5C800] border-b border-[#F5C800] pb-2 mb-2">
-                  Últimas notícias
-                </h2>
-                {[n3, n4, n5].filter(Boolean).map((n) => (
-                  <ItemLista key={n!.id} noticia={n!} />
-                ))}
-              </aside>
-            </section>
-
-            {/* Separador */}
-            {resto.length > 0 && (
-              <>
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="w-1 h-5 bg-[#F5C800] rounded-sm" />
-                  <h2 className="text-sm font-bold uppercase tracking-widest text-white/70">Mais notícias</h2>
-                </div>
-
-                {/* Grade 3 colunas */}
-                <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {resto.map((n) => (
-                    <CardMedio key={n.id} noticia={n} />
-                  ))}
-                </section>
-              </>
-            )}
-          </div>
+        {/* 3. MAIS NOTÍCIAS */}
+        {maisNoticias.length > 0 && (
+          <section>
+            <SectionHeading title="Mais notícias" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {maisNoticias.map(n => <CardNoticia key={n.id} noticia={n} />)}
+            </div>
+          </section>
         )}
+
+        {/* 4. ARENA MRV */}
+        <section>
+          <div className="text-center mb-8">
+            <p className="text-xs font-bold uppercase mb-2" style={{ letterSpacing: '0.15em', color: 'var(--text-muted)' }}>O templo alvinegro</p>
+            <h2 className="text-3xl font-black" style={{ color: 'var(--text-strong)' }}>Arena MRV</h2>
+          </div>
+          <div className="grid grid-cols-2 gap-8 items-center">
+            <div className="flex items-center justify-center rounded-lg overflow-hidden" style={{ aspectRatio: '16/10', background: 'linear-gradient(135deg,#161616 0%,#0D0D0D 100%)', border: '1px solid var(--border)' }}>
+              <span className="w-2.5 rounded-sm opacity-30" style={{ height: 120, background: 'var(--ouro)' }} />
+            </div>
+            <div className="flex flex-col gap-4">
+              <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                A Arena MRV é o estádio do Clube Atlético Mineiro, localizada na região da Califórnia, em Belo Horizonte. Inaugurada em 2023, é um marco da nova era institucional do Galo.
+              </p>
+              <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                Com capacidade para mais de 46.000 torcedores, arquitetura moderna e excelente visibilidade, a Arena recebe os jogos do Atlético e eventos culturais. A atmosfera alvinegra torna cada partida uma experiência única.
+              </p>
+              <div>
+                <a href="#" className="inline-flex items-center text-sm font-bold uppercase px-5 py-2.5 transition-colors duration-150 hover:border-yellow-400 hover:text-yellow-400"
+                  style={{ letterSpacing: '0.08em', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', color: 'var(--text-secondary)' }}>
+                  Conheça a Arena
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </div>
 
-      <footer className="border-t border-white/10 py-6 mt-8">
-        <div className="max-w-6xl mx-auto px-4 text-center text-white/40 text-sm">
-          © {new Date().getFullYear()} Radar Alvinegro. Todos os direitos reservados.
-        </div>
-      </footer>
+      <Footer />
     </main>
   )
 }
