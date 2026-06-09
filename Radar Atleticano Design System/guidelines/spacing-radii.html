@@ -1,0 +1,24 @@
+<!-- @dsCard group="Spacing" viewport="700x160" name="Radii & borders" subtitle="sm 4 (bars, thumbs), md 8 (cards), hairline 1px, gold rule 4px" -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface-base); display:flex; gap:20px; align-items:center; }
+  .item { display:flex; flex-direction:column; gap:8px; align-items:center; }
+  .box { width:88px; height:64px; background:var(--surface-raised); border:1px solid var(--border); }
+  .lbl { font: var(--weight-medium) 12px/1.2 var(--font-sans); color: var(--text-secondary); }
+  .sub { font: var(--weight-regular) 10px/1.2 var(--font-sans); color: var(--text-muted); }
+  .rule { width:88px; height:64px; border-left: var(--border-accent-width) solid var(--ouro); display:flex; align-items:center; padding-left:8px; }
+  .rule span { color: var(--text-secondary); font: var(--weight-regular) 11px/1.4 var(--font-sans); }
+</style>
+</head>
+<body>
+  <div class="item"><div class="box" style="border-radius:var(--radius-sm)"></div><span class="lbl">sm · 4px</span><span class="sub">bars, thumbs</span></div>
+  <div class="item"><div class="box" style="border-radius:var(--radius-md)"></div><span class="lbl">md · 8px</span><span class="sub">cards, hero</span></div>
+  <div class="item"><div class="box" style="border-radius:var(--radius-full)"></div><span class="lbl">full</span><span class="sub">pills</span></div>
+  <div class="item"><div class="box" style="border-radius:var(--radius-md); border-color:var(--ouro-50)"></div><span class="lbl">hover</span><span class="sub">ouro-50 border</span></div>
+  <div class="item"><div class="rule"><span>régua dourada</span></div><span class="lbl">accent 4px</span><span class="sub">resumo / quote</span></div>
+</body>
+</html>

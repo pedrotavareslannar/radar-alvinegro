@@ -1,0 +1,44 @@
+/* ============================================================
+   Radar Atleticano — Spacing, radii, layout, elevation tokens
+   4px base grid (Tailwind-derived). Restrained, editorial.
+   ============================================================ */
+
+:root {
+  /* --- Spacing scale (4px base) --- */
+  --space-1: 0.25rem;   /* 4 */
+  --space-2: 0.5rem;    /* 8 */
+  --space-3: 0.75rem;   /* 12 */
+  --space-4: 1rem;      /* 16 */
+  --space-5: 1.25rem;   /* 20 — card padding */
+  --space-6: 1.5rem;    /* 24 — grid gap */
+  --space-8: 2rem;      /* 32 — section gap */
+  --space-10: 2.5rem;   /* 40 — page vertical rhythm */
+  --space-12: 3rem;     /* 48 */
+  --space-16: 4rem;     /* 64 */
+
+  /* --- Radii --- */
+  --radius-sm: 0.25rem;   /* 4 — gold logo bar, thumbnails, chips */
+  --radius-md: 0.5rem;    /* 8 — cards, article hero image */
+  --radius-full: 9999px;  /* pills */
+
+  /* --- Layout containers --- */
+  --container-wide: 72rem;    /* max-w-6xl — homepage grid */
+  --container-read: 48rem;    /* max-w-3xl — article reading column */
+  --container-pad: 1rem;      /* horizontal page padding */
+
+  /* --- Borders --- */
+  --border-width: 1px;
+  --border-accent-width: 4px;  /* gold left-rule on pull-quotes / resumo */
+
+  /* --- Elevation ---
+     The brand barely uses shadows; depth comes from borders + surface shift.
+     Reserve glows for gold accents. */
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-overlay: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --glow-accent: 0 0 0 1px var(--ouro-50);
+
+  /* --- Motion --- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+  --dur-fast: 150ms;     /* @kind other */
+  --dur-normal: 300ms;   /* @kind other */ /* image zoom-on-hover */
+}

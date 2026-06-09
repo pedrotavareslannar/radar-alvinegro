@@ -1,0 +1,37 @@
+<!-- @dsCard group="Colors" viewport="700x170" name="Gold accent in use" subtitle="One accent, used sparingly: kickers, hover borders, marks, pull-rules" -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface-base); display:flex; gap:16px; align-items:stretch; }
+  .demo { flex:1; border:1px solid var(--border); border-radius: var(--radius-md); padding:16px; display:flex; flex-direction:column; gap:10px; justify-content:center; }
+  .kicker { font: var(--weight-bold) 12px/1.2 var(--font-sans); text-transform: uppercase; letter-spacing: var(--tracking-widest); color: var(--accent); }
+  .title { font: var(--weight-bold) 18px/1.15 var(--font-sans); color: var(--text-strong); }
+  .bar { width:8px; height:34px; background:var(--ouro); border-radius:var(--radius-sm); }
+  .quote { border-left: var(--border-accent-width) solid var(--ouro); padding-left:12px; color: var(--text-secondary); font:var(--weight-regular) 14px/1.5 var(--font-sans); }
+  .states { display:flex; gap:8px; }
+  .st { flex:1; height:32px; border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; font:var(--weight-semibold) 11px/1 var(--font-sans); }
+</style>
+</head>
+<body>
+  <div class="demo">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <span class="bar"></span>
+      <div><span class="kicker">Transferências</span><div class="title">Galo encaminha reforço</div></div>
+    </div>
+    <div class="quote">Resumo destacado com a régua dourada à esquerda.</div>
+  </div>
+  <div class="demo" style="max-width:240px;">
+    <div class="states">
+      <div class="st" style="background:var(--ouro); color:var(--preto)">ouro</div>
+      <div class="st" style="background:var(--ouro-escuro); color:var(--preto)">press</div>
+    </div>
+    <div class="states">
+      <div class="st" style="border:1px solid var(--ouro-50); color:var(--accent)">border 50</div>
+      <div class="st" style="background:var(--ouro-15); color:var(--accent)">soft 15</div>
+    </div>
+  </div>
+</body>
+</html>

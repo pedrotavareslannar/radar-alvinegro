@@ -1,0 +1,28 @@
+<!-- @dsCard group="Type" viewport="700x190" name="Typeface — Inter" subtitle="One family does everything. Weights 400–900, high contrast for headlines" -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface-base); }
+  .big { font: var(--weight-black) 56px/1 var(--font-sans); letter-spacing: var(--tracking-tight); color: var(--text-strong); margin-bottom: 14px; }
+  .big .y { color: var(--ouro); }
+  .weights { display:flex; gap:22px; flex-wrap:wrap; }
+  .w { display:flex; flex-direction:column; gap:2px; }
+  .w b { font-size: 22px; color: var(--text-strong); }
+  .w span { font: var(--weight-regular) 11px/1.2 var(--font-sans); color: var(--text-muted); }
+</style>
+</head>
+<body>
+  <div class="big">Galo na <span class="y">veia</span></div>
+  <div class="weights">
+    <div class="w"><b style="font-weight:400">Aa</b><span>400 Regular</span></div>
+    <div class="w"><b style="font-weight:500">Aa</b><span>500 Medium</span></div>
+    <div class="w"><b style="font-weight:600">Aa</b><span>600 Semibold</span></div>
+    <div class="w"><b style="font-weight:700">Aa</b><span>700 Bold</span></div>
+    <div class="w"><b style="font-weight:800">Aa</b><span>800 Extrabold</span></div>
+    <div class="w"><b style="font-weight:900">Aa</b><span>900 Black</span></div>
+  </div>
+</body>
+</html>

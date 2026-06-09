@@ -1,0 +1,50 @@
+/* ============================================================
+   Radar Atleticano — Typography tokens
+   Single family: Inter. Journalistic, clean, high-contrast weights.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  /* --- Families --- */
+  --font-sans: 'Inter', 'Roboto', system-ui, -apple-system, sans-serif;
+
+  /* --- Weights --- */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+  --weight-black: 900;
+
+  /* --- Type scale (px) ---
+     Maps to the site's Tailwind usage: xs..5xl. */
+  --text-xs: 0.75rem;     /* 12 — meta, dates, kicker labels */
+  --text-sm: 0.875rem;    /* 14 — summaries, nav, compact titles */
+  --text-base: 1rem;      /* 16 — body */
+  --text-lg: 1.125rem;    /* 18 — card titles (default) */
+  --text-xl: 1.25rem;     /* 20 — card titles (featured) */
+  --text-2xl: 1.5rem;     /* 24 — wordmark, section heads */
+  --text-3xl: 1.875rem;   /* 30 — article H1 (mobile) */
+  --text-4xl: 2.25rem;    /* 36 */
+  --text-5xl: 3rem;       /* 48 — article H1 (desktop) */
+
+  /* --- Line heights --- */
+  --leading-tight: 1.1;   /* headlines */
+  --leading-snug: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7; /* article prose */
+
+  /* --- Letter spacing --- */
+  --tracking-tight: -0.02em;   /* wordmark, big headlines */
+  --tracking-normal: 0;
+  --tracking-widest: 0.15em;   /* uppercase category kickers */
+
+  /* --- Semantic roles --- */
+  --type-wordmark: var(--weight-bold) var(--text-2xl)/1 var(--font-sans);
+  --type-kicker: var(--weight-bold) var(--text-xs)/1.2 var(--font-sans);
+  --type-headline: var(--weight-bold) var(--text-5xl)/var(--leading-tight) var(--font-sans);
+  --type-card-title: var(--weight-bold) var(--text-xl)/var(--leading-tight) var(--font-sans);
+  --type-body: var(--weight-regular) var(--text-base)/var(--leading-relaxed) var(--font-sans);
+  --type-meta: var(--weight-regular) var(--text-xs)/1.4 var(--font-sans);
+}

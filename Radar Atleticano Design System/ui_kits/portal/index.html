@@ -1,0 +1,62 @@
+<!-- @dsCard group="Portal" viewport="1180x900" name="Portal — homepage & article" subtitle="Interactive club-portal recreation: hero, jogos, classificação, notícias, Arena MRV" -->
+<!-- @startingPoint section="Portal" subtitle="Club news portal — homepage + article, click-through" viewport="1180x900" -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radar Atleticano — Portal</title>
+<link rel="stylesheet" href="../../styles.css">
+<style> html,body { margin:0; background:var(--surface-base); } </style>
+</head>
+<body>
+<div id="root" style="font-family:var(--font-sans);color:var(--text-muted);padding:40px;">Carregando…</div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script>
+/*
+  Runtime composition loader. Composes the REAL authored Radar Atleticano
+  primitives from /components (no re-implementation): fetch each file, strip
+  module syntax, concatenate into one scope, transform, render. Works in the
+  Design System tab and as a standalone file alike.
+*/
+(async () => {
+  const files = [
+    '../../components/content/Kicker.jsx',
+    '../../components/content/Byline.jsx',
+    '../../components/content/Resumo.jsx',
+    '../../components/content/NewsCard.jsx',
+    '../../components/brand/Logo.jsx',
+    '../../components/core/Button.jsx',
+    '../../components/core/SectionHeading.jsx',
+    '../../components/sports/MatchFixture.jsx',
+    '../../components/sports/StandingsTable.jsx',
+    '../../components/media/HeroCarousel.jsx',
+    'Helpers.jsx',
+    'data.js',
+    'Chrome.jsx',
+    'Homepage.jsx',
+    'ArticlePage.jsx',
+  ];
+  try {
+    let src = '';
+    for (const f of files) {
+      let t = await (await fetch(f)).text();
+      t = t.replace(/^\s*import[^\n]*\n/gm, '');
+      t = t.replace(/\bexport\s+function/g, 'function');
+      src += '\n/* ' + f + ' */\n' + t + '\n';
+    }
+    src += `\nReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));`;
+    const out = Babel.transform(src, { presets: ['react'] }).code;
+    new Function('React', 'ReactDOM', out)(React, ReactDOM);
+    if (window.lucide) window.lucide.createIcons();
+  } catch (err) {
+    document.getElementById('root').textContent = 'Erro ao carregar o kit: ' + err.message;
+    console.error(err);
+  }
+})();
+</script>
+</body>
+</html>

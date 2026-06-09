@@ -1,0 +1,51 @@
+/* ============================================================
+   Radar Atleticano — Color tokens
+   Atlético-MG flavored: preto (black), branco (white), ouro (gold).
+   "Alvinegro" = white-and-black. Gold = the glory/star accent.
+   ============================================================ */
+
+:root {
+  /* --- Base palette --- */
+  --preto: #0D0D0D;          /* near-black — the canvas */
+  --preto-puro: #000000;     /* true black, rare */
+  --branco: #FFFFFF;         /* pure white — primary text */
+  --ouro: #F5C800;           /* gold — the single accent */
+  --ouro-escuro: #D4AC00;    /* pressed/darker gold */
+
+  /* --- White alpha ramp (on dark surfaces) ---
+     The whole UI is built on translucent white over #0D0D0D. */
+  --branco-90: rgba(255, 255, 255, 0.90);
+  --branco-70: rgba(255, 255, 255, 0.70);
+  --branco-60: rgba(255, 255, 255, 0.60);
+  --branco-40: rgba(255, 255, 255, 0.40);
+  --branco-20: rgba(255, 255, 255, 0.20);
+  --branco-10: rgba(255, 255, 255, 0.10);
+  --branco-05: rgba(255, 255, 255, 0.05);
+
+  /* --- Gold alpha (hover borders, glows) --- */
+  --ouro-50: rgba(245, 200, 0, 0.50);
+  --ouro-15: rgba(245, 200, 0, 0.15);
+
+  /* --- Semantic aliases --- */
+  --surface-base: var(--preto);          /* page background */
+  --surface-raised: #161616;             /* cards, raised panels */
+  --surface-panel: #121212;              /* widgets: próximos jogos, classificação */
+  --surface-row: rgba(255, 255, 255, 0.03); /* zebra / table rows */
+  --surface-row-active: var(--ouro-15);  /* highlighted standings row (o Galo) */
+  --surface-overlay: rgba(13, 13, 13, 0.95); /* sticky header (with blur) */
+
+  --text-strong: var(--branco);          /* headlines, key text */
+  --text-body: var(--branco-90);         /* running copy */
+  --text-secondary: var(--branco-60);    /* summaries, descriptions */
+  --text-muted: var(--branco-40);        /* meta: dates, bylines, footer */
+  --text-nav: var(--branco-70);          /* nav links (rest state) */
+
+  --accent: var(--ouro);                 /* category labels, hover, marks */
+  --accent-press: var(--ouro-escuro);
+  --accent-soft: var(--ouro-50);         /* hover border on cards */
+
+  --border: var(--branco-10);            /* hairline dividers, card borders */
+  --border-hover: var(--ouro-50);
+
+  --focus-ring: var(--ouro);
+}
