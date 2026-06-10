@@ -5,10 +5,10 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Radar Alvinegro',
+  title: 'Radar Atleticano',
   description: 'Portal de notícias sobre o Clube Atlético Mineiro — transferências, resultados, bastidores e movimentações do clube.',
   openGraph: {
-    title: 'Radar Alvinegro',
+    title: 'Radar Atleticano',
     description: 'Tudo sobre o Galo em um só lugar.',
     locale: 'pt_BR',
     type: 'website',
