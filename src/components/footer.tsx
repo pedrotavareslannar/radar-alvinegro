@@ -11,10 +11,7 @@ const COLUNAS = [
 export default function Footer() {
   return (
     <footer style={{ borderTop: '1px solid var(--border)', background: 'var(--surface-base)' }}>
-      <div
-        className="max-w-6xl mx-auto px-4 py-12"
-        style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr 1fr 1.2fr', gap: 32 }}
-      >
+      <div className="max-w-6xl mx-auto px-4 py-12 grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.2fr]">
         {/* Logo + tagline */}
         <div className="flex flex-col gap-3.5">
           <div className="flex items-center gap-2">

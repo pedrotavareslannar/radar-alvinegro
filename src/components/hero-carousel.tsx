@@ -14,8 +14,8 @@ export default function HeroCarousel({ slides }: { slides: Noticia[] }) {
 
   return (
     <div
-      className="relative overflow-hidden"
-      style={{ height: 460, borderRadius: 'var(--radius-md)', border: '1px solid var(--border)', background: slide.imagem_capa ? '#0D0D0D' : 'linear-gradient(135deg, #161616 0%, #0D0D0D 100%)' }}
+      className="relative overflow-hidden h-[300px] sm:h-[380px] lg:h-[460px]"
+      style={{ borderRadius: 'var(--radius-md)', border: '1px solid var(--border)', background: slide.imagem_capa ? '#0D0D0D' : 'linear-gradient(135deg, #161616 0%, #0D0D0D 100%)' }}
     >
       {/* Imagem */}
       {slide.imagem_capa ? (
@@ -39,8 +39,7 @@ export default function HeroCarousel({ slides }: { slides: Noticia[] }) {
       {/* Conteúdo */}
       <Link
         href={`/noticias/${slide.slug}`}
-        className="absolute left-0 right-0 bottom-0 flex flex-col gap-3 text-left"
-        style={{ padding: '0 32px 32px' }}
+        className="absolute left-0 right-0 bottom-0 flex flex-col gap-3 text-left px-4 pb-8 sm:px-8 sm:pb-8"
       >
         {slide.categoria && (
           <span
@@ -51,8 +50,8 @@ export default function HeroCarousel({ slides }: { slides: Noticia[] }) {
           </span>
         )}
         <h2
-          className="m-0 font-extrabold text-3xl leading-tight"
-          style={{ maxWidth: '70%', letterSpacing: '-0.02em', color: 'var(--text-strong)', textShadow: '0 2px 24px rgba(0,0,0,0.5)' }}
+          className="m-0 font-extrabold text-xl sm:text-2xl lg:text-3xl leading-tight max-w-full lg:max-w-[70%]"
+          style={{ letterSpacing: '-0.02em', color: 'var(--text-strong)', textShadow: '0 2px 24px rgba(0,0,0,0.5)' }}
         >
           {slide.titulo}
         </h2>

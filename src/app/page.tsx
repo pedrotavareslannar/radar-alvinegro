@@ -78,7 +78,7 @@ export default async function Home() {
       <div className="max-w-6xl mx-auto px-4 py-8 w-full flex-1 flex flex-col gap-14">
 
         {/* 1. HERO + PRÓXIMOS JOGOS */}
-        <section className="grid gap-6" style={{ gridTemplateColumns: 'minmax(0,1fr) 300px', alignItems: 'stretch' }}>
+        <section className="grid gap-6 items-stretch grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px]">
           <HeroCarousel slides={heroSlides} />
           <ProximosJogos />
         </section>
@@ -86,8 +86,8 @@ export default async function Home() {
         {/* 2. NOTÍCIAS + CLASSIFICAÇÃO */}
         <section>
           <SectionHeading title="Notícias" action="Ver todas" href="/noticias" />
-          <div className="grid gap-6" style={{ gridTemplateColumns: 'minmax(0,1fr) 300px', alignItems: 'start' }}>
-            <div className="grid grid-cols-3 gap-5">
+          <div className="grid gap-6 items-start grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {gridNoticias.length > 0
                 ? gridNoticias.map(n => <CardNoticia key={n.id} noticia={n} />)
                 : <p className="col-span-3 text-center py-16" style={{ color: 'var(--text-muted)' }}>Nenhuma notícia publicada ainda.</p>

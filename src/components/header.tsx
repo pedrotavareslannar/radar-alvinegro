@@ -1,9 +1,10 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Search } from 'lucide-react'
+import { Search, Menu, X } from 'lucide-react'
 
 const NAV = [
   { label: 'Início', href: '/' },
@@ -41,25 +42,27 @@ const SOCIAL = [
 
 export default function Header() {
   const pathname = usePathname()
+  const [open, setOpen] = useState(false)
 
   return (
     <header className="sticky top-0 z-50 border-b"
       style={{ background: 'var(--surface-overlay)', backdropFilter: 'blur(8px)', borderColor: 'var(--border)' }}>
-      <div className="max-w-6xl mx-auto px-4 py-3.5 flex items-center gap-7">
+      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center gap-4 lg:gap-7">
 
         {/* Logo */}
-        <Link href="/" className="shrink-0 hover:opacity-80 transition-opacity">
+        <Link href="/" className="flex items-center gap-2.5 shrink-0 hover:opacity-80 transition-opacity" onClick={() => setOpen(false)}>
           <Image
             src="https://wjhjznlryougzayfspcy.supabase.co/storage/v1/object/public/imagens/logo/logo-radar-atleticano.png"
             alt="Radar Atleticano"
-            width={48}
-            height={56}
+            width={44}
+            height={52}
             priority
           />
+          <span className="text-lg font-black uppercase tracking-tight text-white hidden sm:inline">Radar Atleticano</span>
         </Link>
 
-        {/* Nav */}
-        <nav className="flex gap-5 mr-auto">
+        {/* Nav desktop */}
+        <nav className="hidden md:flex gap-5 mr-auto">
           {NAV.map(({ label, href }) => {
             const active = pathname === href
             return (
@@ -72,8 +75,8 @@ export default function Header() {
           })}
         </nav>
 
-        {/* Redes sociais + busca */}
-        <div className="flex items-center gap-3.5" style={{ color: 'var(--text-nav)' }}>
+        {/* Redes sociais + busca (desktop) */}
+        <div className="hidden md:flex items-center gap-3.5 ml-auto md:ml-0" style={{ color: 'var(--text-nav)' }}>
           {SOCIAL.map(({ Icon, label, href }) => (
             <a key={label} href={href} aria-label={label} className="inline-flex transition-colors duration-150 hover:text-yellow-400">
               <Icon />
@@ -85,7 +88,41 @@ export default function Header() {
           </a>
         </div>
 
+        {/* Botão hambúrguer (mobile) */}
+        <button
+          onClick={() => setOpen(o => !o)}
+          aria-label={open ? 'Fechar menu' : 'Abrir menu'}
+          aria-expanded={open}
+          className="md:hidden ml-auto inline-flex items-center justify-center w-10 h-10 rounded-md transition-colors"
+          style={{ color: 'var(--text-nav)', border: '1px solid var(--border)' }}
+        >
+          {open ? <X size={20} strokeWidth={2} /> : <Menu size={20} strokeWidth={2} />}
+        </button>
       </div>
+
+      {/* Menu mobile */}
+      {open && (
+        <nav className="md:hidden border-t px-4 pb-4 pt-2 flex flex-col"
+          style={{ background: 'var(--surface-overlay)', borderColor: 'var(--border)' }}>
+          {NAV.map(({ label, href }) => {
+            const active = pathname === href
+            return (
+              <Link key={href} href={href} onClick={() => setOpen(false)}
+                className="py-3 text-base font-semibold border-b transition-colors"
+                style={{ color: active ? 'var(--ouro)' : 'var(--text-nav)', borderColor: 'var(--border)' }}>
+                {label}
+              </Link>
+            )
+          })}
+          <div className="flex items-center gap-5 pt-4" style={{ color: 'var(--text-nav)' }}>
+            {SOCIAL.map(({ Icon, label, href }) => (
+              <a key={label} href={href} aria-label={label} className="inline-flex transition-colors hover:text-yellow-400">
+                <Icon />
+              </a>
+            ))}
+          </div>
+        </nav>
+      )}
     </header>
   )
 }
