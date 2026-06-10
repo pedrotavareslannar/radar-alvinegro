@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Search } from 'lucide-react'
 
@@ -47,9 +48,14 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-4 py-3.5 flex items-center gap-7">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 shrink-0 hover:opacity-80 transition-opacity">
-          <span className="w-1 h-7 rounded-sm" style={{ background: 'var(--ouro)' }} />
-          <span className="text-xl font-black uppercase tracking-tight text-white">Radar Atleticano</span>
+        <Link href="/" className="shrink-0 hover:opacity-80 transition-opacity">
+          <Image
+            src="https://wjhjznlryougzayfspcy.supabase.co/storage/v1/object/public/imagens/logo/logo-radar-atleticano.png"
+            alt="Radar Atleticano"
+            width={48}
+            height={56}
+            priority
+          />
         </Link>
 
         {/* Nav */}
