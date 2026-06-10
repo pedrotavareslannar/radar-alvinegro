@@ -8,6 +8,7 @@ import HeroCarousel from '@/components/hero-carousel'
 import ProximosJogos from '@/components/proximos-jogos'
 import Classificacao from '@/components/classificacao'
 import Footer from '@/components/footer'
+import ArenaCarousel from '@/components/arena-carousel'
 
 async function buscarNoticias(): Promise<Noticia[]> {
   const { data } = await supabase
@@ -106,31 +107,9 @@ export default async function Home() {
           </section>
         )}
 
-        {/* 4. ARENA MRV */}
+        {/* 4. ARENA MRV — carrossel */}
         <section>
-          <div className="text-center mb-8">
-            <p className="text-xs font-bold uppercase mb-2" style={{ letterSpacing: '0.15em', color: 'var(--text-muted)' }}>O templo alvinegro</p>
-            <h2 className="text-3xl font-black" style={{ color: 'var(--text-strong)' }}>Arena MRV</h2>
-          </div>
-          <div className="grid grid-cols-2 gap-8 items-center">
-            <div className="flex items-center justify-center rounded-lg overflow-hidden" style={{ aspectRatio: '16/10', background: 'linear-gradient(135deg,#161616 0%,#0D0D0D 100%)', border: '1px solid var(--border)' }}>
-              <span className="w-2.5 rounded-sm opacity-30" style={{ height: 120, background: 'var(--ouro)' }} />
-            </div>
-            <div className="flex flex-col gap-4">
-              <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                A Arena MRV é o estádio do Clube Atlético Mineiro, localizada na região da Califórnia, em Belo Horizonte. Inaugurada em 2023, é um marco da nova era institucional do Galo.
-              </p>
-              <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                Com capacidade para mais de 46.000 torcedores, arquitetura moderna e excelente visibilidade, a Arena recebe os jogos do Atlético e eventos culturais. A atmosfera alvinegra torna cada partida uma experiência única.
-              </p>
-              <div>
-                <a href="#" className="inline-flex items-center text-sm font-bold uppercase px-5 py-2.5 transition-colors duration-150 hover:border-yellow-400 hover:text-yellow-400"
-                  style={{ letterSpacing: '0.08em', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', color: 'var(--text-secondary)' }}>
-                  Conheça a Arena
-                </a>
-              </div>
-            </div>
-          </div>
+          <ArenaCarousel />
         </section>
 
       </div>
