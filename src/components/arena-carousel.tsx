@@ -2,8 +2,15 @@
 
 import { useState, useEffect, useCallback } from 'react'
 
+const BASE = 'https://wjhjznlryougzayfspcy.supabase.co/storage/v1/object/public/imagens/posts'
+
 const FOTOS: string[] = [
-  // fotos serão adicionadas aqui
+  `${BASE}/arena-1.jpeg`,
+  `${BASE}/arena-2.jpeg`,
+  `${BASE}/arena-3.jpeg`,
+  `${BASE}/arena-4.jpeg`,
+  `${BASE}/arena-5.jpeg`,
+  `${BASE}/arena-7.jpeg`,
 ]
 
 interface ArenaCarouselProps {
