@@ -68,8 +68,9 @@ function SectionHeading({ title, action, href }: { title: string; action?: strin
 export default async function Home() {
   const noticias = await buscarNoticias()
   const heroSlides = noticias.slice(0, 3)
-  const gridNoticias = noticias.slice(0, 3)
-  const maisNoticias = noticias.slice(3)
+  // Grade de notícias começa após as do hero, para não repetir as destacadas.
+  const gridNoticias = noticias.slice(3, 6)
+  const maisNoticias = noticias.slice(6)
 
   return (
     <main className="flex flex-col min-h-screen" style={{ background: 'var(--surface-base)' }}>
