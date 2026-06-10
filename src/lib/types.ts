@@ -6,6 +6,7 @@ export type Noticia = {
   resumo: string | null
   categoria: string | null
   imagem_capa: string | null
+  focal_point: string | null
   autor: string | null
   publicado: boolean
   criado_em: string

@@ -29,7 +29,7 @@ function CardNoticia({ noticia }: { noticia: Noticia }) {
     <Link href={`/noticias/${noticia.slug}`} className="group block ra-card" style={{ borderRadius: 'var(--radius-md)', border: '1px solid var(--border)', overflow: 'hidden' }}>
       {noticia.imagem_capa ? (
         <div className="overflow-hidden" style={{ aspectRatio: '4/3' }}>
-          <img src={noticia.imagem_capa} alt={noticia.titulo} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300" />
+          <img src={noticia.imagem_capa} alt={noticia.titulo} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" style={{ objectPosition: noticia.focal_point ?? '50% 30%' }} />
         </div>
       ) : (
         <div className="flex items-center justify-center" style={{ aspectRatio: '4/3', background: 'linear-gradient(135deg,#161616 0%,#0D0D0D 100%)' }}>

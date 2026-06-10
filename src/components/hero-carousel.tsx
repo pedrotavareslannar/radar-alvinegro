@@ -22,7 +22,8 @@ export default function HeroCarousel({ slides }: { slides: Noticia[] }) {
         <img
           src={slide.imagem_capa}
           alt={slide.titulo}
-          className="absolute inset-0 w-full h-full object-cover object-top"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: slide.focal_point ?? '50% 30%' }}
         />
       ) : (
         <span
