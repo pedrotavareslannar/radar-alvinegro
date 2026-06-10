@@ -46,7 +46,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b"
-      style={{ background: 'var(--surface-overlay)', backdropFilter: 'blur(8px)', borderColor: 'var(--border)' }}>
+      style={{ background: '#FFFFFF', borderColor: '#E5E5E5' }}>
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center gap-4 lg:gap-7">
 
         {/* Logo */}
@@ -58,7 +58,7 @@ export default function Header() {
             height={52}
             priority
           />
-          <span className="text-lg font-black uppercase tracking-tight text-white hidden sm:inline">Radar Atleticano</span>
+          <span className="text-lg font-black uppercase tracking-tight text-black hidden sm:inline">Radar Atleticano</span>
         </Link>
 
         {/* Nav desktop */}
@@ -67,8 +67,8 @@ export default function Header() {
             const active = pathname === href
             return (
               <Link key={href} href={href}
-                className="py-1 text-sm font-semibold transition-colors duration-150 hover:text-yellow-400"
-                style={{ color: active ? 'var(--ouro)' : 'var(--text-nav)', borderBottom: active ? '2px solid var(--ouro)' : '2px solid transparent' }}>
+                className="py-1 text-sm font-semibold transition-colors duration-150 hover:text-yellow-600"
+                style={{ color: active ? 'var(--ouro)' : '#111111', borderBottom: active ? '2px solid var(--ouro)' : '2px solid transparent' }}>
                 {label}
               </Link>
             )
@@ -76,14 +76,14 @@ export default function Header() {
         </nav>
 
         {/* Redes sociais + busca (desktop) */}
-        <div className="hidden md:flex items-center gap-3.5 ml-auto md:ml-0" style={{ color: 'var(--text-nav)' }}>
+        <div className="hidden md:flex items-center gap-3.5 ml-auto md:ml-0" style={{ color: '#111111' }}>
           {SOCIAL.map(({ Icon, label, href }) => (
             <a key={label} href={href} aria-label={label} className="inline-flex transition-colors duration-150 hover:text-yellow-400">
               <Icon />
             </a>
           ))}
-          <span className="w-px h-4" style={{ background: 'var(--border)' }} />
-          <a href="#" aria-label="Buscar" className="inline-flex transition-colors duration-150 hover:text-yellow-400">
+          <span className="w-px h-4" style={{ background: '#E5E5E5' }} />
+          <a href="#" aria-label="Buscar" className="inline-flex transition-colors duration-150 hover:text-yellow-600">
             <Search size={17} strokeWidth={2} />
           </a>
         </div>
@@ -94,7 +94,7 @@ export default function Header() {
           aria-label={open ? 'Fechar menu' : 'Abrir menu'}
           aria-expanded={open}
           className="md:hidden ml-auto inline-flex items-center justify-center w-10 h-10 rounded-md transition-colors"
-          style={{ color: 'var(--text-nav)', border: '1px solid var(--border)' }}
+          style={{ color: '#111111', border: '1px solid #E5E5E5' }}
         >
           {open ? <X size={20} strokeWidth={2} /> : <Menu size={20} strokeWidth={2} />}
         </button>
@@ -103,18 +103,18 @@ export default function Header() {
       {/* Menu mobile */}
       {open && (
         <nav className="md:hidden border-t px-4 pb-4 pt-2 flex flex-col"
-          style={{ background: 'var(--surface-overlay)', borderColor: 'var(--border)' }}>
+          style={{ background: '#FFFFFF', borderColor: '#E5E5E5' }}>
           {NAV.map(({ label, href }) => {
             const active = pathname === href
             return (
               <Link key={href} href={href} onClick={() => setOpen(false)}
                 className="py-3 text-base font-semibold border-b transition-colors"
-                style={{ color: active ? 'var(--ouro)' : 'var(--text-nav)', borderColor: 'var(--border)' }}>
+                style={{ color: active ? 'var(--ouro)' : '#111111', borderColor: '#E5E5E5' }}>
                 {label}
               </Link>
             )
           })}
-          <div className="flex items-center gap-5 pt-4" style={{ color: 'var(--text-nav)' }}>
+          <div className="flex items-center gap-5 pt-4" style={{ color: '#111111' }}>
             {SOCIAL.map(({ Icon, label, href }) => (
               <a key={label} href={href} aria-label={label} className="inline-flex transition-colors hover:text-yellow-400">
                 <Icon />
