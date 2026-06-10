@@ -77,10 +77,12 @@ export default async function Home() {
 
       <div className="max-w-6xl mx-auto px-4 py-8 w-full flex-1 flex flex-col gap-14">
 
-        {/* 1. HERO + PRÓXIMOS JOGOS */}
+        {/* 1. HERO + PRÓXIMOS JOGOS (próximos só no desktop; no mobile vai junto da classificação) */}
         <section className="grid gap-6 items-stretch grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px]">
           <HeroCarousel slides={heroSlides} />
-          <ProximosJogos />
+          <div className="hidden lg:block">
+            <ProximosJogos />
+          </div>
         </section>
 
         {/* 2. NOTÍCIAS + CLASSIFICAÇÃO */}
@@ -93,7 +95,12 @@ export default async function Home() {
                 : <p className="col-span-3 text-center py-16" style={{ color: 'var(--text-muted)' }}>Nenhuma notícia publicada ainda.</p>
               }
             </div>
-            <Classificacao />
+            <div className="flex flex-col gap-6">
+              <div className="lg:hidden">
+                <ProximosJogos />
+              </div>
+              <Classificacao />
+            </div>
           </div>
         </section>
 

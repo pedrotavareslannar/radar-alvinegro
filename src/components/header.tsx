@@ -58,7 +58,13 @@ export default function Header() {
             height={52}
             priority
           />
-          <span className="text-lg font-black uppercase tracking-tight text-black hidden sm:inline">Radar Atleticano</span>
+          <span className="text-lg font-black uppercase tracking-tight text-black hidden md:inline">Radar Atleticano</span>
+        </Link>
+
+        {/* Título centralizado (mobile) */}
+        <Link href="/" onClick={() => setOpen(false)}
+          className="md:hidden flex-1 text-center text-base font-black uppercase tracking-tight text-black">
+          Radar Atleticano
         </Link>
 
         {/* Nav desktop */}
